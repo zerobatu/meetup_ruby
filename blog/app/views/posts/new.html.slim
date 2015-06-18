@@ -1,0 +1,21 @@
+.row
+  .col-md-8.col-md-offset-2
+    .well.bs-component
+      center
+        h2 New Post
+
+      = form_for(@post, html: { class: 'form-horizontal' }) do |f|
+        fieldset
+          .form-group
+            = f.label :title, class: 'col-md-2 control-label'
+            .col-md-10
+              = f.text_field :title, autofocus: true, class: 'form-control'
+
+          .form-group
+            = f.label :content, class: 'col-md-2 control-label'
+            .col-md-10
+              = f.bootsy_area :content, class: 'form-control', style: 'height: 400px'
+
+          .form-group
+            .col-md-10.col-md-offset-2
+              = f.submit :Save, class: 'btn btn-primary'

@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Blog
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  body
+    .container
+      nav.navbar.navbar-inverse
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.collapsed data-target="#bs-example-navbar-collapse-2" data-toggle="collapse" type="button" 
+              span.sr-only Toggle navigation
+              span.icon-bar
+            a.navbar-brand href="/"
+              i El Terrible Blog
+          #bs-example-navbar-collapse-2.collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              - if current_user.present?
+                li
+                  = link_to 'New Post', new_post_path
+                li
+                  = link_to 'Close Session', destroy_user_session_path, method: :delete
+              - else
+                li
+                  = link_to :Register, new_user_registration_path
+                li
+                  = link_to :Login, new_user_session_path
+
+      = yield
+
