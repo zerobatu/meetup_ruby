@@ -1,20 +1,31 @@
 .row
+  = hidden_field_tag :post_id, @post.id
   .col-md-8.col-md-offset-2
     .row
       .col-md-10
         center
-          h3= @post.title
+          h2= @post.title
       .col-md-2
-        = link_to :Edit, edit_post_path(@post), class: 'btn btn-primary'
+        - if current_user
+          = link_to :Edit, edit_post_path(@post), class: 'btn btn-primary', style: 'margin-top: 1.2em;'
     hr
 
   .col-md-8.col-md-offset-2
     = @post.content.html_safe
-  .col-md-8.col-md-offset-2
-    hr
-    h4 Comments:
-    .well.bs-component
-  - if current_user.present?
-    .col-md-8.col-md-offset-2
-      | create comment
+  .col-md-8.col-md-offset-2 ng-controller='CommentsController as comment'
+    - if current_user.present?
+      hr
+      .col-md-9
+        textarea.new-comment ng-model='comment.new' style='width: 100%;' rows='4'
+      .col-md-3
+          button.btn.btn-primary ng-click='comment.add()' Comment
+
+    .col-md-12
+      hr
+      h4 Comments:
+      .well.bs-component ng-repeat='c in comment.comments'
+        b
+          | {{ c.by.email }}
+        hr style='margin-top: 0px; margin-bottom: 0.5em'
+        | {{ c.content }}
 
