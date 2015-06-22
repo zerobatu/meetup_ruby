@@ -1,8 +1,17 @@
 .row
   = hidden_field_tag :post_id, @post.id
-  .col-md-8.col-md-offset-2
-    .row
-      .col-md-10
+  .col-md-8.col-md-offset-2 ng-controller='KarmaController as karma'
+    .row.title
+      .col-md-2.karma
+        .row
+          .col-md-4.pointer ng-click='karma.down()'
+            | -1
+          .col-md-4.score
+            | {{ karma.postKarma }}
+          .col-md-4.pointer ng-click='karma.up()'
+            | +1
+
+      .col-md-8
         center
           h2= @post.title
       .col-md-2

@@ -1,0 +1,16 @@
+.title .karma {
+  text-align: center;
+}
+
+.title .karma .row {
+  margin-top: 2em;
+}
+
+.title .karma .row .pointer {
+  cursor: pointer;
+}
+
+.title .karma .row .score {
+  background: #f5f5f5;
+  padding: 0.2em;
+}
